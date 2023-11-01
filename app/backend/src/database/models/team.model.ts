@@ -1,4 +1,4 @@
-import { DataTypes, Model, ModelDefined, Optional } from "sequelize";
+import { DataTypes, Model, ModelDefined, Optional } from 'sequelize';
 import Team from '../../Interfaces/Team';
 import db from '.';
 
