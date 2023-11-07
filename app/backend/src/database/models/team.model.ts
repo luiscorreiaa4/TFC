@@ -1,30 +1,30 @@
-import { DataTypes, Model, ModelDefined, Optional } from 'sequelize';
-import Team from '../../Interfaces/Team';
+import {
+  DataTypes,
+  ModelDefined,
+  Model,
+  Optional,
+} from 'sequelize';
+import ITeam from '../../Interfaces/ITeam';
 import db from '.';
 
-type TeamInputtableTypes = Optional<Team, 'id'>;
-type TeamSequilizeModelCreator = ModelDefined<Team, TeamInputtableTypes>;
-export type TeamModel = Model<Team, TeamInputtableTypes>;
-
-const TeamModelCreator: TeamSequilizeModelCreator = db.define('team', {
+type TeamModelSequelizeAttributes = Optional<ITeam, 'id'>;
+type TeamModelCreator = ModelDefined<ITeam, TeamModelSequelizeAttributes>;
+export type ITeamModel = Model<ITeam, TeamModelSequelizeAttributes>;
+const TeamModelSequelize: TeamModelCreator = db.define('Team', {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  price: {
+  teamName: {
     type: DataTypes.STRING,
     allowNull: false,
   },
 }, {
   tableName: 'teams',
-  timestamps: false,
   underscored: true,
+  timestamps: false,
 });
 
-export default TeamModelCreator;
+export default TeamModelSequelize;
