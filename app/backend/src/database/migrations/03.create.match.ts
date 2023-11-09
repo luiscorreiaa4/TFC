@@ -27,7 +27,7 @@ export default {
       },
       awayTeamGoals: {
         type: DataTypes.INTEGER,
-        field: 'home_team_goals',
+        field: 'away_team_goals',
         allowNull: false,
       },
       inProgress: {

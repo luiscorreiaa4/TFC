@@ -21,7 +21,7 @@ export default class TeamService {
     if (!result) {
       return {
         status: 'error',
-        data: 'Team not found',
+        data: { message: 'errão' }, // ou outro valor padrão se desejado
       };
     }
     return {

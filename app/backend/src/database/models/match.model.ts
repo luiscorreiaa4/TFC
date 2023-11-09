@@ -1,6 +1,5 @@
 import { DataTypes, Model, Optional, ModelDefined } from 'sequelize';
 import IMatch from '../../Interfaces/IMatch';
-import TeamModelSequelize from './team.model';
 import db from '.';
 
 type MatchModelSequelizeAttributes = Optional<IMatch, 'id'>;
@@ -13,20 +12,24 @@ const MatchModelSequelize: MatchModelCreator = db.define('Match', {
     primaryKey: true,
     autoIncrement: true,
   },
-  username: {
-    type: DataTypes.STRING,
+  homeTeamId: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
-  password: {
-    type: DataTypes.STRING,
+  awayTeamId: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
-  email: {
-    type: DataTypes.STRING,
+  homeTeamGoals: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
-  user: {
-    type: DataTypes.STRING,
+  awayTeamGoals: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  inProgress: {
+    type: DataTypes.BOOLEAN,
     allowNull: false,
   },
 }, {

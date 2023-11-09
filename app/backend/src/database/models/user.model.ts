@@ -24,7 +24,7 @@ const UserModelSequelize: UserModelCreator = db.define('Team', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  user: {
+  role: {
     type: DataTypes.STRING,
     allowNull: false,
   },
