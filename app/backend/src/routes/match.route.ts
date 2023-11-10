@@ -10,7 +10,12 @@ matchRouter.get('/matches', (req, res) => matchController.getAll(req, res));
 matchRouter.patch(
   '/matches/:id/finish',
   validateToken,
-  (req, res) => matchController.getById(req, res),
+  (req, res) => matchController.endGame(req, res),
+);
+matchRouter.patch(
+  '/matches/:id',
+  validateToken,
+  (req, res) => matchController.updateGame(req, res),
 );
 
 export default matchRouter;

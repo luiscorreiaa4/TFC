@@ -21,12 +21,33 @@ export default class MatchService {
     };
   }
 
-  async getById(id: number): ServiceResponse<IMatch> {
+  async endGame(id: number): ServiceResponse<IMatch> {
     const result = await this.model.findByPk(id);
     result?.update({ inProgress: false });
     return {
       status: 'success',
       data: { message: 'finished' },
+    };
+  }
+
+  async updateGame(id: number, match: IMatch): ServiceResponse<IMatch> {
+    const result = await this.model.findByPk(id);
+    if (!result) {
+      return {
+        status: 'error',
+        data: { message: 'match not found' },
+      };
+    }
+    if (result.dataValues.inProgress === false) {
+      return {
+        status: 'error',
+        data: { message: 'Match already finished' },
+      };
+    }
+    result.update(match);
+    return {
+      status: 'success',
+      data: result.dataValues,
     };
   }
 }
