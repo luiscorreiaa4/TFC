@@ -20,4 +20,13 @@ export default class MatchService {
       data,
     };
   }
+
+  async getById(id: number): ServiceResponse<IMatch> {
+    const result = await this.model.findByPk(id);
+    result?.update({ inProgress: false });
+    return {
+      status: 'success',
+      data: { message: 'finished' },
+    };
+  }
 }
