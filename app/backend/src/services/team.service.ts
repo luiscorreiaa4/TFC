@@ -21,7 +21,7 @@ export default class TeamService {
     if (!result) {
       return {
         status: 'error',
-        data: { message: 'errão' }, // ou outro valor padrão se desejado
+        data: { message: 'There is no team with such id!' },
       };
     }
     return {
