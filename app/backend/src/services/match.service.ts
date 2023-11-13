@@ -50,4 +50,24 @@ export default class MatchService {
       data: result.dataValues,
     };
   }
+
+  async createGame(match: IMatch): ServiceResponse<IMatch> {
+    const { homeTeamId, awayTeamId } = match;
+    if (homeTeamId === awayTeamId) {
+      return {
+        status: 'error',
+        data: { message: 'It is not possible to create a match with two equal teams' },
+      };
+    }
+    const team1 = await TeamModelSequelize.findByPk(homeTeamId);
+    const team2 = await TeamModelSequelize.findByPk(awayTeamId);
+    if (!team1 || !team2) {
+      return {
+        status: 'NotFound',
+        data: { message: 'There is no team with such id!' },
+      };
+    }
+    const result = await this.model.create({ ...match, inProgress: true });
+    return { status: 'success', data: result.dataValues };
+  }
 }

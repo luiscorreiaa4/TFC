@@ -17,5 +17,10 @@ matchRouter.patch(
   validateToken,
   (req, res) => matchController.updateGame(req, res),
 );
+matchRouter.post(
+  '/matches',
+  validateToken,
+  (req, res) => matchController.createGame(req, res),
+);
 
 export default matchRouter;

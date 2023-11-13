@@ -37,4 +37,16 @@ export default class MatchController {
     }
     return res.status(200).json(serviceResponse.data);
   }
+
+  public async createGame(req: Request, res: Response) {
+    const { body } = req;
+    const serviceResponse = await this.matchService.createGame(body);
+    if (serviceResponse.status === 'error') {
+      return res.status(422).json(serviceResponse.data);
+    }
+    if (serviceResponse.status === 'NotFound') {
+      return res.status(404).json(serviceResponse.data);
+    }
+    return res.status(201).json(serviceResponse.data);
+  }
 }
