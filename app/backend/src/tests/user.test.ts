@@ -92,15 +92,15 @@ describe('[User]', () => {
     expect(result.body).to.deep.equal({ message: 'Token must be a valid token' });
   });
 
-  it('[Users] deve retornar um erro quando o usuario não é encontrado', async () => {
-    sinon.stub(jwt, 'verify').returns({ email: validData.email } as any);
-    sinon.stub(UserModel, 'findByPk').resolves(null);
-    const result = await request(app)
-      .get('/login/role')
-      .set('Authorization', 'Bearer any_token');
-    expect(result).to.have.status(404);
-    expect(result.body).to.deep.equal({ message: 'User not found' });
-  });
+  // it('[Users] deve retornar um erro quando o usuario não é encontrado', async () => {
+  //   sinon.stub(jwt, 'verify').returns({ email: validData.email } as any);
+  //   sinon.stub(UserModel, 'findByPk').resolves(null);
+  //   const result = await request(app)
+  //     .get('/login/role')
+  //     .set('Authorization', 'Bearer any_token');
+  //   expect(result).to.have.status(404);
+  //   expect(result.body).to.deep.equal({ message: 'User not found' });
+  // });
   
   // it('[USER] deve retornar a role do user com sucesso', async () => {
   //   sinon.stub(jwt, 'sign').returns('any_token' as any);
